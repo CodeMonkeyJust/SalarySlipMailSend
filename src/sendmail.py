@@ -6,7 +6,8 @@
 # ------------------------------------------------------------------
 import smtplib
 from email.mime.text import MIMEText
-from logunit import write_log, get_log_file_name
+from logunit import write_log
+from workspace import get_log_filename, get_config_filename
 from configunit import get_config
 
 # 设置服务器所需信息
@@ -43,18 +44,18 @@ def sendmail(subject, content, receivers):
             mail_sender, receivers, message.as_string())
         # 发送完毕后退出smtp
         smtpObj.quit()
-        write_log(get_log_file_name(), str(subject) + ' ' + str(receivers) + '[发送成功]')
+        write_log(get_log_filename(), str(subject) + ' ' + str(receivers) + '[发送成功]')
     except smtplib.SMTPException as e:
         print('error', e)  # 打印错误
-        write_log(get_log_file_name(), str(subject) + ' ' + str(receivers) + str(e) + '[发送失败]')
+        write_log(get_log_filename(), str(subject) + ' ' + str(receivers) + str(e) + '[发送失败]')
 
 
 def load_config():
     global mail_host, mail_user, mail_pass, mail_sender
-    mail_host=get_config('send', 'mail_host')
-    mail_user=get_config('send', 'mail_user')
-    mail_pass = get_config('send', 'mail_pass')
-    mail_sender = get_config('send', 'mail_sender')
+    mail_host = get_config(get_config_filename(), 'send', 'mail_host')
+    mail_user = get_config(get_config_filename(), 'send', 'mail_user')
+    mail_pass = get_config(get_config_filename(), 'send', 'mail_pass')
+    mail_sender = get_config(get_config_filename(), 'send', 'mail_sender')
 
 
 if __name__ == '__main__':

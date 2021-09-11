@@ -5,11 +5,8 @@
 # Description:读取工资EXCEL并调用邮件发送
 # ------------------------------------------------------------------
 import xlrd
-import datetime
-from datetime import date
 from sendmail import sendmail
 from makecontent import load_css, load_sign
-from logunit import write_log
 
 HEAD_ROW_COUNT = 1
 

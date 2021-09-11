@@ -16,6 +16,7 @@ from configunit import get_config
 from dateunit import get_curdate_last_month
 import tkinter.messagebox
 import os
+from workspace import get_config_filename,init_file
 
 LOG_LINE_NUM = 0
 EXCEL_FILE_PATH = ''
@@ -44,7 +45,7 @@ class MY_GUI():
 
         self.init_sender_label = Label(self.init_window_name, text="发件人")
         self.init_sender_label.grid(row=2, column=0)
-        self.mailsender_label = Label(self.init_window_name, text=get_config('send', 'mail_sender'))
+        self.mailsender_label = Label(self.init_window_name, text=get_config(get_config_filename(), 'send', 'mail_sender'))
         self.mailsender_label.grid(row=2, column=1)
 
         self.init_yearmonth_label = Label(self.init_window_name, text="工资年月")
@@ -112,6 +113,7 @@ class MY_GUI():
 
 
 def gui_start():
+    init_file()
     init_window = Tk()  # 实例化出一个父窗口
     ZMJ_PORTAL = MY_GUI(init_window)
     # 设置根窗口默认属性
