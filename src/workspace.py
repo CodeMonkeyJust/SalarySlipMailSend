@@ -45,4 +45,4 @@ def get_log_path():
 
 
 def get_log_filename():
-    return time.strftime('%Y-%m-%d', time.localtime(time.time())) + '.log'
+    return os.path.join(get_log_path(), time.strftime('%Y-%m-%d', time.localtime(time.time())) + '.log')
