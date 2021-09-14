@@ -16,7 +16,7 @@ from configunit import get_config
 from dateunit import get_curdate_last_month
 import tkinter.messagebox
 import os
-from workspace import get_config_filename,init_file
+from workspace import get_config_filename, init_file
 
 LOG_LINE_NUM = 0
 EXCEL_FILE_PATH = ''
@@ -45,7 +45,8 @@ class MY_GUI():
 
         self.init_sender_label = Label(self.init_window_name, text="发件人")
         self.init_sender_label.grid(row=2, column=0)
-        self.mailsender_label = Label(self.init_window_name, text=get_config(get_config_filename(), 'send', 'mail_sender'))
+        self.mailsender_label = Label(self.init_window_name,
+                                      text=get_config(get_config_filename(), 'send', 'mail_sender'))
         self.mailsender_label.grid(row=2, column=1)
 
         self.init_yearmonth_label = Label(self.init_window_name, text="工资年月")
@@ -84,7 +85,9 @@ class MY_GUI():
             data = load_user_mail(EXCEL_FILE_PATH)
             for j in range(len(data[0])):
                 # print(data[0][j])
-                self.data_text.insert(END, '{0:<10}|{1:<10}\n'.format(data[0][j], data[1][j]))
+                # char(122288)为中文空格，修正Format格式化中文补位问题
+                self.data_text.insert(END,
+                                      '{0:{2}<10}|\t{1:{2}<10}\n'.format(data[0][j], data[1][j], chr(122288), end=''))
 
     def send_salary_mail(self):
         if os.path.exists(EXCEL_FILE_PATH):
