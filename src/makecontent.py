@@ -13,7 +13,7 @@ def load_css():
     return css
 
 
-def load_sign():
-    sign = ("<tr><td colspan='2'>工资条内容保密，请勿外泄！</td></tr> \n"
-            "<tr><td colspan='2'>本邮箱仅作为工资条发送使用，请勿回复！如有疑问，请联系综合部负责人!</td></tr> \n")
-    return  sign
+def load_sign(sign1, sign2):
+    sign = ("<tr><td colspan='2'>" + sign1 + "</td></tr> \n"
+                                             "<tr><td colspan='2'>" + sign2 + "</td></tr> \n")
+    return sign

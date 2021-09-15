@@ -28,7 +28,7 @@ class MY_GUI():
 
     # 设置窗口
     def set_init_window(self):
-        self.init_window_name.title("PDE工资条发送系统 V2.0")  # 窗口名
+        self.init_window_name.title("PDE工资条发送系统 V2.1")  # 窗口名
         # self.init_window_name.geometry('320x160+100+100')                         #290 160为窗口大小，+10 +10 定义窗口弹出时的默认展示位置
         self.init_window_name.geometry('800x600+10+10')
         # self.init_window_name["bg"] = "pink"                                    #窗口背景色，其他背景色见：blog.csdn.net/chl0000/article/details/7657887
@@ -49,22 +49,34 @@ class MY_GUI():
                                       text=get_config(get_config_filename(), 'send', 'mail_sender'))
         self.mailsender_label.grid(row=2, column=1)
 
-        self.init_yearmonth_label = Label(self.init_window_name, text="工资年月")
+        self.init_yearmonth_label = Label(self.init_window_name, text="邮件标题")
         self.init_yearmonth_label.grid(row=3, column=0)
-        self.init_data_label = Label(self.init_window_name, text="工资数据")
+        self.init_data_label = Label(self.init_window_name, text="签名信息信息一")
         self.init_data_label.grid(row=4, column=0)
+        self.init_data_label = Label(self.init_window_name, text="签名信息信息二")
+        self.init_data_label.grid(row=5, column=0)
+        self.init_data_label = Label(self.init_window_name, text="工资数据")
+        self.init_data_label.grid(row=6, column=0)
         self.log_label = Label(self.init_window_name, text="发送结果")
-        self.log_label.grid(row=11, column=0)
+        self.log_label.grid(row=13, column=0)
         # 文本框
         self.data_text = Text(self.init_window_name, width=100, height=18)  # 原始数据录入框
-        self.data_text.grid(row=5, column=0, rowspan=5, columnspan=10)
+        self.data_text.grid(row=7, column=0, rowspan=5, columnspan=10)
         self.log_data_text = Text(self.init_window_name, width=100, height=18)  # 日志框
-        self.log_data_text.grid(row=12, column=0, columnspan=5)
+        self.log_data_text.grid(row=14, column=0, columnspan=5)
 
         # 输入框
         self.mailsubject_entry = Entry(self.init_window_name, width=80)
         self.mailsubject_entry.grid(row=3, column=1)
-        self.mailsubject_entry.insert(0, get_curdate_last_month())
+        self.mailsubject_entry.insert(0, get_curdate_last_month() + "工资条-")
+
+        self.mailsign1_entry = Entry(self.init_window_name, width=80)
+        self.mailsign1_entry.grid(row=4, column=1)
+        self.mailsign1_entry.insert(0, get_config(get_config_filename(), 'send', 'sign1'))
+
+        self.mailsign2_entry = Entry(self.init_window_name, width=80)
+        self.mailsign2_entry.grid(row=5, column=1)
+        self.mailsign2_entry.insert(0, get_config(get_config_filename(), 'send', 'sign2'))
         # 按钮
         self.str_trans_to_md5_button = Button(self.init_window_name, text="选择工资表", width=10,
                                               command=self.choose_excel)  # 调用内部方法  加()为直接调用
@@ -92,7 +104,8 @@ class MY_GUI():
     def send_salary_mail(self):
         if os.path.exists(EXCEL_FILE_PATH):
             self.write_log_to_text('开始发送工资条')
-            send_by_excel(EXCEL_FILE_PATH, self.mailsubject_entry.get())
+            send_by_excel(EXCEL_FILE_PATH, self.mailsubject_entry.get(), self.mailsign1_entry.get(),
+                          self.mailsign2_entry.get())
             self.write_log_to_text('工资条发送完成')
         else:
             tkinter.messagebox.showerror(title='文件错误', message='请选择工资表EXCLE文件，最后一列必须为电子邮件地址！')

@@ -9,7 +9,7 @@ import configparser
 
 def get_config(config_filename, section, item):
     cf = configparser.ConfigParser()
-    cf.read(config_filename)
+    cf.read(config_filename,encoding='utf-8')
     if not cf.has_section(section):
         cf.add_section(section)
     if not cf.has_option(section, item):

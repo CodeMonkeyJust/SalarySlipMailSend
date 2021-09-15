@@ -27,7 +27,7 @@ def load_user_mail(file_path):
     return data
 
 
-def send_by_excel(file_path, subject_head):
+def send_by_excel(file_path, subject_head, sign1, sign2):
     # 打开文件
     wb = xlrd.open_workbook(file_path)
     # 获取所有sheet的名字
@@ -61,9 +61,9 @@ def send_by_excel(file_path, subject_head):
             html_table = html_table + '<tr>' + '<td>' + table_head[c] + '</td>' + '<td>' + cellval + '</td>' + '</tr>'
 
             html_table = html_table + '\n'
-        html_table = html_table + load_sign()
+        html_table = html_table + load_sign(sign1, sign2)
         html_table = html_table + '\n</table>'
-        subject = subject_head + '工资表-' + sheet1.cell(r, 1).value
+        subject = subject_head + sheet1.cell(r, 1).value
         receivers = [sheet1.cell(r, colNum - 1).value]
         content = html_table
         # print(html_table)
