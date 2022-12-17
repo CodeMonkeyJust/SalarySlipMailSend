@@ -28,7 +28,7 @@ class MY_GUI():
 
     # 设置窗口
     def set_init_window(self):
-        self.init_window_name.title("PDE工资条发送系统 V2.1")  # 窗口名
+        self.init_window_name.title("工资条发送系统 V2.1.0")  # 窗口名
         # self.init_window_name.geometry('320x160+100+100')                         #290 160为窗口大小，+10 +10 定义窗口弹出时的默认展示位置
         self.init_window_name.geometry('800x600+10+10')
         # self.init_window_name["bg"] = "pink"                                    #窗口背景色，其他背景色见：blog.csdn.net/chl0000/article/details/7657887
