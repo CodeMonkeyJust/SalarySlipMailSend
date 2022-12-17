@@ -131,6 +131,13 @@ sign1 =
 sign2 = 
 ```
 
+### 界面截图
+#### 主界面
+
+![主界面](/screenshot/main.png) "主界面"
+
+
+
 ### 发送日志
 
 查看用户目录 **\SalarySlipMailSend\log** 中的日志文件。
