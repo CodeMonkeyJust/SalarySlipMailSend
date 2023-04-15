@@ -4,7 +4,7 @@
 # Created:2021-09-09
 # Description:工资条邮件发送主程序
 # ------------------------------------------------------------------
-from mainform import gui_start
+from main_form import gui_start
 
 
 def print_hi(name):

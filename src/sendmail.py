@@ -6,9 +6,9 @@
 # ------------------------------------------------------------------
 import smtplib
 from email.mime.text import MIMEText
-from logunit import write_log
+from log_unit import write_log
 from workspace import get_log_filename, get_config_filename
-from configunit import get_config
+from config_unit import get_config
 
 # 设置服务器所需信息
 # 邮箱服务器地址

@@ -5,7 +5,7 @@
 # Description:日期处理
 # ------------------------------------------------------------------
 import datetime
-
+import time
 
 def get_specdate_last_month(specdate):
     # 获取「今天」
@@ -20,6 +20,9 @@ def get_specdate_last_month(specdate):
 def get_curdate_last_month():
     return get_specdate_last_month(datetime.date.today())
 
+def get_current_time():
+    current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+    return current_time
 
 if __name__ == '__main__':
     print(get_curdate_last_month())

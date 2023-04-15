@@ -6,26 +6,22 @@
 # ------------------------------------------------------------------
 import os
 import time
-import pathunt
-from configunit import get_config
+import path_unit
+from config_unit import get_config
 
 
 def init_file():
     # 配置
-    pathunt.path_create(get_workspace_path())
-    pathunt.path_create(get_config_path())
+    path_unit.path_create(get_workspace_path())
+    path_unit.path_create(get_config_path())
     try:
         f = open(get_config_filename(), 'r')
         f.close()
     except IOError:
         f = open(get_config_filename(), 'w')
         f.close()
-    get_config(get_config_filename(), 'send', 'mail_host')
-    get_config(get_config_filename(), 'send', 'mail_user')
-    get_config(get_config_filename(), 'send', 'mail_pass')
-    get_config(get_config_filename(), 'send', 'mail_sender')
     # 日志
-    pathunt.path_create(get_log_path())
+    path_unit.path_create(get_log_path())
 
 
 def get_workspace_path():
